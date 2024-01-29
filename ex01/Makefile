@@ -1,9 +1,9 @@
 CC = c++
 CFLAGS = -Wall -Wextra -Werror -std=c++98
 INC = -I./
-NAME = convert
+NAME = a.out
 SRCS = main.cpp \
-	   ScalarConverter.cpp
+	   Serializer.cpp
 OBJS = $(SRCS:.cpp=.o)
 
 .PHONY: all clean fclean re
