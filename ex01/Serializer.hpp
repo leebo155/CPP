@@ -14,6 +14,7 @@
 # define SERIALIZER_HPP
 
 # include <iostream>
+# include <stdint.h>
 
 typedef struct	s_Data
 {

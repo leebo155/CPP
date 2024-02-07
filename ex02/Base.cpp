@@ -18,7 +18,7 @@ Base	*Base::generate(void)
 {
 	clock_t	now;
 
-	now = std::clock();
+	now = clock();
 
 	std::srand(now);
 	switch (std::rand() % 3)

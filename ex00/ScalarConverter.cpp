@@ -34,7 +34,7 @@ ScalarConverter::~ScalarConverter(void)
 void	ScalarConverter::convert(std::string str)
 {
 	char	*ptr = NULL;
-	double	num = std::strtod(str.c_str(), &ptr);
+	double	num = strtod(str.c_str(), &ptr);
 			
 	if ((num == 0.0 && ((str[0] != '-') && (str[0] != '+') && (!std::isdigit(str[0]))))
 			|| (*ptr != 'f' && *ptr != 0)
@@ -45,7 +45,7 @@ void	ScalarConverter::convert(std::string str)
 	}
 
 	std::cout << "char: ";
-	if ((num < CHAR_MIN || CHAR_MAX < num)
+	if ((num < -128 || 127 < num)
 			|| (str.find("nan") != std::string::npos))
 		std::cout << "impossible" << std::endl;
 	else if	(std::isprint(num))
@@ -53,7 +53,7 @@ void	ScalarConverter::convert(std::string str)
 	else
 		std::cout << "Non displayable" << std::endl;
 	std::cout << "int: ";
-	if ((num < INT_MIN || INT_MAX < num)
+	if ((num < -2147483648 || 2147483647 < num)
 			|| (str.find("nan") != std::string::npos))
 		std::cout << "impossible" << std::endl;
 	else
