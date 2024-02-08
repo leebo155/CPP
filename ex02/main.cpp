@@ -6,51 +6,100 @@
 /*   By: bohlee <bohlee@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 19:03:28 by bohlee            #+#    #+#             */
-/*   Updated: 2024/02/03 14:07:19 by bohlee           ###   ########.fr       */
+/*   Updated: 2024/02/08 15:09:58 by bohlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Base.hpp"
+#include "A.hpp"
+#include "B.hpp"
+#include "C.hpp"
+#include <cstdlib>
+
+Base	*generate(void)
+{
+	clock_t	now;
+
+	now = clock();
+
+	std::srand(now);
+	switch (std::rand() % 3)
+	{
+		case 0:
+			return new A();
+		case 1:
+			return new B();
+		case 2:
+			return new C();
+	}
+	return 0;
+}
+
+void	identify(Base* p)
+{
+	if (dynamic_cast<A *>(p))
+		std::cout << "Class Type A" << std::endl;
+	else if (dynamic_cast<B *>(p))
+		std::cout << "Class Type B" << std::endl;
+	else if (dynamic_cast<C *>(p))
+		std::cout << "Class Type C" << std::endl;
+}
+
+void	identify(Base& p)
+{
+
+	try {
+		A a = dynamic_cast<A&>(p);
+		std::cout << "Class Type A" << std::endl;
+	} catch (std::exception &e) {};
+	try {
+		B b = dynamic_cast<B&>(p);
+		std::cout << "Class Type B" << std::endl;
+	} catch (std::exception &e) {};
+	try {
+		C c = dynamic_cast<C&>(p);
+		std::cout << "Class Type C" << std::endl;
+	} catch (std::exception &e) {};
+}
 
 int main(void)
 {
-	Base	base;
 	Base	*ptr;
 
-	std::cout << "Test1: Base.idnetify(ptr*)\n" << std::endl;
+	std::cout << "Test1: idnetify(ptr*)\n" << std::endl;
 
 	ptr = new A();
-	base.identify(ptr);
+	identify(ptr);
 	delete ptr;
 
 	ptr = new B();
-	base.identify(ptr);
+	identify(ptr);
 	delete ptr;
 
 	ptr = new C();
-	base.identify(ptr);
+	identify(ptr);
 	delete ptr;
 	
-	std::cout << "\nTest2: Base.idnetify(ref&)\n" << std::endl;
+	std::cout << "\nTest2: idnetify(ref&)\n" << std::endl;
 	
 	A a;
 	B b;
 	C c;
 
-	base.identify(a);
-	base.identify(b);
-	base.identify(c);
+	identify(a);
+	identify(b);
+	identify(c);
 
-	std::cout << "\nTest3: Base.generate()\n" << std::endl;
+	std::cout << "\nTest3: generate()\n" << std::endl;
 
-	ptr = base.generate();
-	base.identify(ptr);
-	base.identify(*ptr);
+	ptr = generate();
+	identify(ptr);
+	identify(*ptr);
 	delete ptr;
 
-	ptr = base.generate();
-	base.identify(ptr);
-	base.identify(*ptr);
+	ptr = generate();
+	identify(ptr);
+	identify(*ptr);
 	delete ptr;
 
 	return 0;

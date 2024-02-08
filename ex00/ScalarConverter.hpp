@@ -6,7 +6,7 @@
 /*   By: bohlee <bohlee@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 12:06:06 by bohlee            #+#    #+#             */
-/*   Updated: 2024/01/25 14:06:28 by bohlee           ###   ########.fr       */
+/*   Updated: 2024/02/08 14:06:12 by bohlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define SCALARCONVERTER_HPP
 
 # include <iostream>
+# include <climits>
 # include <cstdlib>
 
 class ScalarConverter
