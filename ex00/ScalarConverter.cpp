@@ -48,7 +48,7 @@ void	ScalarConverter::convert(std::string str)
 		for (size_t i = 0; i < str.length(); i++)
 			upper_str.push_back(std::toupper(str[i]));
 
-		char	*ptr = nullptr;
+		char	*ptr = 0;
 		num = strtod(upper_str.c_str(), &ptr);
 			
 		if ((num == 0.0 && ((upper_str[0] != '-') && (upper_str[0] != '+') && (!std::isdigit(upper_str[0]))))
