@@ -6,7 +6,7 @@
 /*   By: bohlee <bohlee@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 15:05:38 by bohlee            #+#    #+#             */
-/*   Updated: 2024/02/19 17:43:16 by bohlee           ###   ########.fr       */
+/*   Updated: 2024/02/19 18:37:04 by bohlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ class Array
 			if (index < 0 || amount <= index) throw Array::WrongIndexException();
 			return array[index];
 		};
-		unsigned int	size(void) { return amount; };
+		unsigned int	size(void) { return amount; } const;
 };
 
 #endif
