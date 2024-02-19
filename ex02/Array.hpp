@@ -14,6 +14,7 @@
 # define ARRAY_HPP
 
 # include <iostream>
+# include <cstdlib>
 # include <exception>
 
 template <typename T>
@@ -46,12 +47,12 @@ class Array
 		};
 		~Array(void) { delete[] array; };
 
-		Array(const ssize_t size) throw(std::exception) {
+		Array(const long long size) throw(std::exception) {
 			if (size < 0 || 4294967295 < size) throw Array::WrongIndexException();
 			amount = size;
 			array = new T[amount];
 		};
-		T &operator[](const ssize_t index) {
+		T &operator[](const long long index) {
 			if (index < 0 || amount <= index) throw Array::WrongIndexException();
 			return array[index];
 		};
