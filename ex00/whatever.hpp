@@ -6,7 +6,7 @@
 /*   By: bohlee <bohlee@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/16 14:39:11 by bohlee            #+#    #+#             */
-/*   Updated: 2024/02/16 14:46:10 by bohlee           ###   ########.fr       */
+/*   Updated: 2024/02/20 14:45:41 by bohlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ T	&min(T &a, T &b)
 	if (a > b)
 		return b;
 	return a;
-}
+};
 
 template <typename T>
 T	&max(T &a, T &b)
@@ -35,6 +35,6 @@ T	&max(T &a, T &b)
 	if (a < b)
 		return b;
 	return a;
-}
+};
 
 #endif

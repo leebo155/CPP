@@ -6,7 +6,7 @@
 /*   By: bohlee <bohlee@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/16 16:02:34 by bohlee            #+#    #+#             */
-/*   Updated: 2024/02/19 18:19:00 by bohlee           ###   ########.fr       */
+/*   Updated: 2024/02/20 15:23:16 by bohlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,15 @@ void	iter(const T *arr, size_t size, void (*func)(const T))
 };
 
 template <typename T>
-void	powerPrint(const T n)
+void	doublePrint(const T t)
 {
-	std::cout << n * n << std::endl;
+	std::cout << t + t << std::endl;
+};
+
+template <typename T>
+void	templatePrint(const T t)
+{
+	std::cout << t << std::endl;
 };
 
 #endif

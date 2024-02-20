@@ -4,9 +4,12 @@
 #define MAX_VAL 750
 int main(int, char**)
 {
+	Array<int> empty;
     Array<int> numbers(MAX_VAL);
     int* mirror = new int[MAX_VAL];
+
 	std::cout << numbers.size() << std::endl;
+
     srand(time(NULL));
     for (int i = 0; i < MAX_VAL; i++)
     {
@@ -18,6 +21,14 @@ int main(int, char**)
     {
         Array<int> tmp = numbers;
         Array<int> test(tmp);
+    	for (int i = 0; i < MAX_VAL; i++)
+    	{
+        	if (tmp[i] != numbers[i] || test[i] != numbers[i])
+        	{
+          	   std::cerr << "didn't save the same value!!" << std::endl;
+         	   return 1;
+        	}
+		}
     }
 
     for (int i = 0; i < MAX_VAL; i++)
@@ -50,8 +61,5 @@ int main(int, char**)
         numbers[i] = rand();
     }
     delete [] mirror;
-
-	system("leaks a.out");
-
     return 0;
 }
