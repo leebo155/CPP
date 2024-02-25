@@ -2,7 +2,8 @@ CC = c++
 CFLAGS = -Wall -Wextra -Werror -std=c++98
 INC = -I./
 NAME = btc
-SRCS = main.cpp
+SRCS = main.cpp \
+	   BitcoinExchange.cpp
 OBJS = $(SRCS:.cpp=.o)
 
 .PHONY: all clean fclean re
