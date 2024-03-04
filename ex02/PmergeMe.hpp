@@ -6,7 +6,7 @@
 /*   By: bohlee <bohlee@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 17:55:39 by bohlee            #+#    #+#             */
-/*   Updated: 2024/02/29 20:43:10 by bohlee           ###   ########.fr       */
+/*   Updated: 2024/03/04 17:07:19 by bohlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ class PmergeMe
 		std::vector<uint64_t> vt;
 		std::list<uint64_t> lt;
 
+		int		jacobsthalNumber(int n);
 		template <typename T>
 		void	splitPair(int size, T &t)
 		{
@@ -60,7 +61,6 @@ class PmergeMe
 					T	tmp;
 					tmp.insert(tmp.begin(), t.begin() + b, t.begin() + b + node_size);
 					t.erase(t.begin() + b, t.begin() + b + node_size);
-					std::cout << std::endl;
 					t.insert(t.begin() + a, tmp.begin(), tmp.end());
 					tmp.clear();
 					std::cout << "vector: ";
@@ -73,6 +73,63 @@ class PmergeMe
 
 			this->mergeRecur(a, size, node_size, t);
 			this->mergeRecur(a + size + 1, b, node_size, t);	
+		};
+		
+		template <typename T>
+		void	binarySearch(int end, int node_size, T &a, T &b)
+		{
+			int	middle;
+			int	low = 0;
+			int high = end;
+			
+			while (low < high)
+			{
+				middle = end / node_size / 2 * node_size;
+
+				if (b.at(0) <  a.at(middle))
+					high = middle - node_size;
+				else
+					low = middle + node_size;
+			}
+			return high;
+		};
+
+		template <typename T>
+		void	insertMerge(int nodes, int node_size, T &t)
+		{
+			T	tmp;
+			int	start, end, amount, selected, find;
+
+			for (int i = 0; i < nodes / 2; i++)
+			{
+				start = i * node_size + node_size;
+				end = start + node_size;
+				tmp.insert(tmp.end(), t.begin() + start, t.begin() + end);
+				t.erase(t.begin() + start, t.begin() + end);
+			}
+			amount = nodes / 2;
+			if (nodes % 2)
+			{
+				tmp.insert(tmp.end(), t.begin() + start, t.begin() + end);
+				t.erase(t.begin() + start, t.begin() + end);
+				amount++;
+			}
+			t.insert(t.begin(), tmp.begin(), tmp.begin() + node_size);
+			tmp.erase(tmp.begin(), tmp.begin() + node_size);
+
+			selected = 1;
+			start = node_size;
+			end = 0;
+			for (int i = 1; !tmp.empty(); i++)
+			{
+				for (int j = this->jacobsthalNumber(i); j > selected; j--)
+				{
+					if (j > amount)
+						j = amount;
+					end = start + node_size * j;
+					find = this->binarySearch(end, node_size, t, tmp);
+				}
+			}
 		};
 
 	public:

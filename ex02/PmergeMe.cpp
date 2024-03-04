@@ -6,7 +6,7 @@
 /*   By: bohlee <bohlee@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 18:17:48 by bohlee            #+#    #+#             */
-/*   Updated: 2024/02/29 20:42:27 by bohlee           ###   ########.fr       */
+/*   Updated: 2024/03/04 15:23:33 by bohlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,16 @@ PmergeMe::~PmergeMe(void)
 {
 	vt.clear();
 	lt.clear();
+}
+
+int		PmergeMe::jacobsthalNumber(int n)
+{
+	if (n == 0)
+		return 0;
+	else if (n == 1)
+		return 1;
+	else
+		return jacobsthalNumber(n - 1) + 2 * jacobsthalNumber(n - 2);
 }
 
 void	PmergeMe::sort(int argc, char **argv) throw(std::exception)
@@ -50,10 +60,25 @@ void	PmergeMe::sort(int argc, char **argv) throw(std::exception)
 //		std::cout << *it << " ";
 //	std::cout << std::endl;	
 
-	this->splitPair(argc - 1, vt);
-	for (int i = 2; i <= (argc - 1) / 2; i += i)
-		this->mergeRecur(0, (argc - 1) / (i * 2) * (i * 2) - 1, i,  vt);
+	int i = 2;
+	int	di;
+	int nodes;
+	int size = argc - 1;
 
+	this->splitPair(size, vt);
+	while (i <= size)
+	{
+		di = i + i;
+		nodes = size / di;
+		this->mergeRecur(0, nodes * di - 1, i,  vt);
+		i += i;
+	}
+	while (i > 0)
+	{
+		i -= i;
+		nodes = size / i;
+		this->insertMerge(nodes, i, vt);
+	}
 //	std::cout << "\nvector: ";
 //	for (std::vector<uint64_t>::iterator it = vt.begin(); it != vt.end(); it++)
 //		std::cout << *it << " ";
