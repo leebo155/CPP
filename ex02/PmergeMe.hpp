@@ -6,7 +6,7 @@
 /*   By: bohlee <bohlee@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 17:55:39 by bohlee            #+#    #+#             */
-/*   Updated: 2024/03/04 17:07:19 by bohlee           ###   ########.fr       */
+/*   Updated: 2024/03/05 16:38:11 by bohlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,59 +76,124 @@ class PmergeMe
 		};
 		
 		template <typename T>
-		void	binarySearch(int end, int node_size, T &a, T &b)
+		int	binarySearch(int pivot, int end, int node_size, T &a, T &b)
 		{
 			int	middle;
 			int	low = 0;
-			int high = end;
+			int high = end - 1;
 			
-			while (low < high)
+			while (low <= high)
 			{
-				middle = end / node_size / 2 * node_size;
+				middle = (high + low) / 2;
 
-				if (b.at(0) <  a.at(middle))
-					high = middle - node_size;
+				if (low == high)
+					return middle;
+				else if (b.at(pivot * node_size) <  a.at(middle * node_size))
+					high = middle - 1;
 				else
-					low = middle + node_size;
+					low = middle + 1;
 			}
-			return high;
+			return -1;
 		};
 
 		template <typename T>
 		void	insertMerge(int nodes, int node_size, T &t)
 		{
 			T	tmp;
-			int	start, end, amount, selected, find;
+			int	start, end;
+			int b_blocks = nodes / 2;
 
-			for (int i = 0; i < nodes / 2; i++)
+			for (int i = 0; i < b_blocks; i++)
 			{
 				start = i * node_size + node_size;
 				end = start + node_size;
 				tmp.insert(tmp.end(), t.begin() + start, t.begin() + end);
 				t.erase(t.begin() + start, t.begin() + end);
+
+				std::cout << "vector a: ";
+				for (typename T::iterator it = t.begin(); it != t.end(); it++)
+					std::cout << *it << " ";
+				std::cout << std::endl;
+				std::cout << "vector b: ";
+				for (typename T::iterator it = tmp.begin(); it != tmp.end(); it++)
+					std::cout << *it << " ";
+				std::cout << std::endl;
 			}
-			amount = nodes / 2;
 			if (nodes % 2)
 			{
 				tmp.insert(tmp.end(), t.begin() + start, t.begin() + end);
 				t.erase(t.begin() + start, t.begin() + end);
-				amount++;
+				b_blocks++;
+
+				std::cout << "vector a: ";
+				for (typename T::iterator it = t.begin(); it != t.end(); it++)
+					std::cout << *it << " ";
+				std::cout << std::endl;
+				std::cout << "vector b: ";
+				for (typename T::iterator it = tmp.begin(); it != tmp.end(); it++)
+					std::cout << *it << " ";
+				std::cout << std::endl;
 			}
 			t.insert(t.begin(), tmp.begin(), tmp.begin() + node_size);
 			tmp.erase(tmp.begin(), tmp.begin() + node_size);
 
-			selected = 1;
-			start = node_size;
-			end = 0;
-			for (int i = 1; !tmp.empty(); i++)
+			std::cout << "vector a: ";
+			for (typename T::iterator it = t.begin(); it != t.end(); it++)
+				std::cout << *it << " ";
+			std::cout << std::endl;
+			std::cout << "vector b: ";
+			for (typename T::iterator it = tmp.begin(); it != tmp.end(); it++)
+				std::cout << *it << " ";
+			std::cout << std::endl;
+
+			int selected = 1;
+			int	move = 1;
+			int first_move, jacob, select, find;
+			for (int i = 3; !tmp.empty(); i++)
 			{
-				for (int j = this->jacobsthalNumber(i); j > selected; j--)
+				jacob = this->jacobsthalNumber(i);
+				if (jacob >= b_blocks)
+					jacob = b_blocks;
+				end = jacob + move;
+				if (nodes % 2)
+					end--;
+				select = jacob - move - 1;
+				first_move = this->binarySearch(select, end, node_size, t, tmp);
+				t.insert(t.begin() + first_move * node_size,
+						tmp.begin() + select * node_size, tmp.begin() + (select + 1) * node_size);
+				tmp.erase(tmp.begin() + select * node_size, tmp.begin() + (select + 1) * node_size);
+
+				std::cout << "vector a: ";
+				for (typename T::iterator it = t.begin(); it != t.end(); it++)
+					std::cout << *it << " ";
+				std::cout << std::endl;
+				std::cout << "vector b: ";
+				for (typename T::iterator it = tmp.begin(); it != tmp.end(); it++)
+					std::cout << *it << " ";
+				std::cout << std::endl;
+				jacob--;
+				for (int j = jacob; j > selected; j--)
 				{
-					if (j > amount)
-						j = amount;
-					end = start + node_size * j;
-					find = this->binarySearch(end, node_size, t, tmp);
+					end = j + move - 1;
+					if (first_move <= end)
+						end++;
+					move++;
+					select = j - move;
+					find = this->binarySearch(select, end, node_size, t, tmp);
+					t.insert(t.begin() + find * node_size,
+							tmp.begin() + select * node_size, tmp.begin() + (select + 1) * node_size);
+					tmp.erase(tmp.begin() + select * node_size, tmp.begin() + (select + 1) * node_size);
+					std::cout << "vector a: ";
+					for (typename T::iterator it = t.begin(); it != t.end(); it++)
+						std::cout << *it << " ";
+					std::cout << std::endl;
+					std::cout << "vector b: ";
+					for (typename T::iterator it = tmp.begin(); it != tmp.end(); it++)
+						std::cout << *it << " ";
+					std::cout << std::endl;
 				}
+				selected = jacob + 1;
+				move++;
 			}
 		};
 

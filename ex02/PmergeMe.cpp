@@ -6,7 +6,7 @@
 /*   By: bohlee <bohlee@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 18:17:48 by bohlee            #+#    #+#             */
-/*   Updated: 2024/03/04 15:23:33 by bohlee           ###   ########.fr       */
+/*   Updated: 2024/03/05 12:41:19 by bohlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,16 +66,17 @@ void	PmergeMe::sort(int argc, char **argv) throw(std::exception)
 	int size = argc - 1;
 
 	this->splitPair(size, vt);
-	while (i <= size)
+	while (i < size)
 	{
 		di = i + i;
 		nodes = size / di;
 		this->mergeRecur(0, nodes * di - 1, i,  vt);
 		i += i;
 	}
-	while (i > 0)
+	i /= 2;
+	while (i > 1)
 	{
-		i -= i;
+		i /= 2;
 		nodes = size / i;
 		this->insertMerge(nodes, i, vt);
 	}
