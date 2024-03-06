@@ -6,7 +6,7 @@
 /*   By: bohlee <bohlee@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 18:17:48 by bohlee            #+#    #+#             */
-/*   Updated: 2024/03/05 12:41:19 by bohlee           ###   ########.fr       */
+/*   Updated: 2024/03/06 14:33:58 by bohlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ PmergeMe	&PmergeMe::operator=(const PmergeMe &target) { (void)target; return *th
 PmergeMe::~PmergeMe(void)
 {
 	vt.clear();
-	lt.clear();
+	dq.clear();
 }
 
 int		PmergeMe::jacobsthalNumber(int n)
@@ -36,6 +36,7 @@ int		PmergeMe::jacobsthalNumber(int n)
 
 void	PmergeMe::sort(int argc, char **argv) throw(std::exception)
 {
+	std::list<uint64_t>	lt;
 	{
 		double	num;
 		char	*ptr;
@@ -48,45 +49,45 @@ void	PmergeMe::sort(int argc, char **argv) throw(std::exception)
 					|| (num == 0 && !isdigit(*(argv[i]))))
 				throw std::runtime_error("Error");
 			vt.push_back(num);
+			dq.push_back(num);
 			lt.push_back(num);
 		}
 	}
-	std::cout << "vector: ";
-	for (std::vector<uint64_t>::iterator it = vt.begin(); it != vt.end(); it++)
+	std::cout << "before:\t";
+	for (std::list<uint64_t>::iterator it = lt.begin(); it != --lt.end(); it++)
 		std::cout << *it << " ";
-	std::cout << std::endl;
-//	std::cout << "list: ";
-//	for (std::list<uint64_t>::iterator it = lt.begin(); it != lt.end(); it++)
-//		std::cout << *it << " ";
-//	std::cout << std::endl;	
+	std::cout << *(--lt.end()) << std::endl;
+	lt.sort();
+	std::cout << "after:\t";
+	for (std::list<uint64_t>::iterator it = lt.begin(); it != --lt.end(); it++)
+		std::cout << *it << " ";
+	std::cout << *(--lt.end()) << std::endl;
 
-	int i = 2;
-	int	di;
-	int nodes;
 	int size = argc - 1;
+	int node;
 
-	this->splitPair(size, vt);
-	while (i < size)
+	clock_t	dq_bf = clock();
+	node = this->splitPair(1, size, dq);
+	this->insertMerge(size, node, dq);
+	clock_t	dq_af = clock();
+
+	clock_t	vt_bf = clock();
+	node = this->splitPair(1, size, vt);
+	this->insertMerge(size, node, vt);
+	clock_t	vt_af = clock();
+
+	std::vector<uint64_t>::iterator vit = vt.begin();
+	std::deque<uint64_t>::iterator dit = dq.begin();
+	for (std::list<uint64_t>::iterator lit = lt.begin(); lit != lt.end(); lit++)
 	{
-		di = i + i;
-		nodes = size / di;
-		this->mergeRecur(0, nodes * di - 1, i,  vt);
-		i += i;
+		if (*lit != *dit || *lit != *vit)
+		{
+			std::cerr << "not sort!!" << std::endl;
+			return ;
+		}
+		vit++;
+		dit++;
 	}
-	i /= 2;
-	while (i > 1)
-	{
-		i /= 2;
-		nodes = size / i;
-		this->insertMerge(nodes, i, vt);
-	}
-//	std::cout << "\nvector: ";
-//	for (std::vector<uint64_t>::iterator it = vt.begin(); it != vt.end(); it++)
-//		std::cout << *it << " ";
-//	std::cout << std::endl;
-//	std::cout << "list: ";
-//	for (std::list<uint64_t>::iterator it = lt.begin(); it != lt.end(); it++)
-//		std::cout << *it << " ";
-//	std::cout << std::endl;	
+	std::cout << "Time to process a range of\t" << size << " elements with std::vector : " << 1000.0 * (vt_af - vt_bf) / CLOCKS_PER_SEC << " ms" << std::endl;
+	std::cout << "Time to process a range of\t" << size << " elements with std::deque  : " << 1000.0 * (dq_af - dq_bf) / CLOCKS_PER_SEC << " ms" << std::endl;
 }
-
