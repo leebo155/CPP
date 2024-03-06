@@ -16,7 +16,7 @@ int	main(int argc, char *argv[])
 {
 	try {
 		if (argc - 1 == 0)
-			throw std::runtime_error("Error");
+			return 1;
 
 		RPN rpn;
 		rpn.calculate(argc, argv);

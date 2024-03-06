@@ -14,6 +14,7 @@
 # define RPN_HPP
 
 # include <iostream>
+# include <stdint.h>
 # include <stack>
 # include <exception>
 

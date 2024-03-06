@@ -14,6 +14,7 @@
 # define PMERGEME_HPP
 
 # include <iostream>
+# include <stdint.h>
 # include <cstdlib>
 # include <vector>
 # include <deque>
