@@ -6,7 +6,7 @@
 /*   By: bohlee <bohlee@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/24 11:18:05 by bohlee            #+#    #+#             */
-/*   Updated: 2024/02/25 18:15:05 by bohlee           ###   ########.fr       */
+/*   Updated: 2024/03/06 15:52:31 by bohlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -169,10 +169,16 @@ void	BitcoinExchange::calculate(const char *inputfile) throw(std::exception)
 	getline(input, line);
 	pos = line.find('|');
 	if (pos == std::string::npos)
+	{
+		input.close();
 		throw std::runtime_error("bad input => " + line);
+	}
 	if ("date" != this->trim(line.substr(0, pos))
 				|| "value" != this->trim(line.substr(pos + 1)))
+	{
+		input.close();
 		throw std::runtime_error("bad input => " + line);
+	}
 
 	while (input.good())
 	{
@@ -199,12 +205,6 @@ void	BitcoinExchange::calculate(const char *inputfile) throw(std::exception)
 			}
 			continue;
 		}
-		if (price > 1000)
-		{
-			std::cerr << "Error: too large a number." << std::endl;
-			continue;
-		}
-
 		std::map<std::string, double>::iterator it = database.find(date);
 		if (it == database.end())
 		{
@@ -215,12 +215,20 @@ void	BitcoinExchange::calculate(const char *inputfile) throw(std::exception)
 				continue;
 			}
 		}
+		if (price > 1000)
+		{
+			std::cerr << "Error: too large a number." << std::endl;
+			continue;
+		}
 		std::cout << date << " => " << price;
 		std::cout << " = " << it->second * price << std::endl;
 	}
 
 	if (input.bad())
+	{
+		input.close();	
 		throw std::runtime_error("could not reached eof.");
+	}
 	input.close();
 }
 
@@ -239,10 +247,16 @@ void	BitcoinExchange::setDatabase(const char *csvfile) throw(std::exception)
 	getline(csv, line);
 	pos = line.find(',');
 	if (pos == std::string::npos)
+	{
+		csv.close();
 		throw std::runtime_error("bad input => " + line);
+	}
 	if ("date" != this->trim(line.substr(0, pos))
 				|| "exchange_rate" != this->trim(line.substr(pos + 1)))
+	{
+		csv.close();
 		throw std::runtime_error("bad input => " + line);
+	}
 
 	while (csv.good())
 	{
@@ -277,6 +291,9 @@ void	BitcoinExchange::setDatabase(const char *csvfile) throw(std::exception)
 	}
 
 	if (csv.bad())
+	{
+		csv.close();
 		throw std::runtime_error("could not reached eof.");
+	}
 	csv.close();
 }

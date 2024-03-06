@@ -6,7 +6,7 @@
 /*   By: bohlee <bohlee@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 18:01:44 by bohlee            #+#    #+#             */
-/*   Updated: 2024/02/28 16:49:27 by bohlee           ###   ########.fr       */
+/*   Updated: 2024/03/06 15:38:09 by bohlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int	main(int argc, char *argv[])
 {
 	try {
-		if (argc - 1 < 2)
+		if (argc - 1 < 1)
 			throw std::runtime_error("Error");
 
 		PmergeMe	pm;
