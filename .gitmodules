@@ -1,0 +1,30 @@
+[submodule "cpp00"]
+	path = cpp00
+	url = git@github.com:leebo155/cpp00.git
+[submodule "cpp01"]
+	path = cpp01
+	url = git@github.com:leebo155/cpp01.git
+[submodule "cpp02"]
+	path = cpp02
+	url = git@github.com:leebo155/cpp02.git
+[submodule "cpp03"]
+	path = cpp03
+	url = git@github.com:leebo155/cpp03.git
+[submodule "cpp04"]
+	path = cpp04
+	url = git@github.com:leebo155/cpp04.git
+[submodule "cpp05"]
+	path = cpp05
+	url = git@github.com:leebo155/cpp05.git
+[submodule "cpp06"]
+	path = cpp06
+	url = git@github.com:leebo155/cpp06.git
+[submodule "cpp07"]
+	path = cpp07
+	url = git@github.com:leebo155/cpp07.git
+[submodule "cpp08"]
+	path = cpp08
+	url = git@github.com:leebo155/cpp08.git
+[submodule "cpp09"]
+	path = cpp09
+	url = git@github.com:leebo155/cpp09.git
