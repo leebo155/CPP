@@ -2,7 +2,7 @@
   **Time to dive into Object Oriented Programming!**
                       
 ## Introduction
-  This first prroject of C++ is designed to help me understand the specifities of the language when compared to C.
+  This first project of C++ helps understand the specifities of the language when compared to C.
   
 ## Contents
  * ex00: Megaphone
