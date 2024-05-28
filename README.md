@@ -1,5 +1,5 @@
 # cpp00
-  **Time to dive into Object Oriented Programming!**
+  **Namespaces, classes, member functions, stdio streams, initialization lists, static, const, and some other basic stuf**
                       
 ## Introduction
   This first project of C++ helps understand the specifities of the language when compared to C.
