@@ -5,10 +5,10 @@
 This Project helps understand Ad-hoc polymorphism, overloads and orthodox canonical classes in CPP.
 
 ## Contents
-* ex00: **[My First Class in Orthodox Canonical Form](https://github.com/leebo155/Cpp/new/master/cpp02/ex00)**
-* ex01: **[Towards a more useful fixed-point number class](https://github.com/leebo155/Cpp/new/master/cpp02/ex01)**
-* ex02: **[Now we’re talking](https://github.com/leebo155/Cpp/new/master/cpp02/ex02)**
-* ex03: **[BSP](https://github.com/leebo155/Cpp/new/master/cpp02/ex03)**
+* ex00: **[My First Class in Orthodox Canonical Form](https://github.com/leebo155/Cpp/tree/master/cpp02/ex00)**
+* ex01: **[Towards a more useful fixed-point number class](https://github.com/leebo155/Cpp/tree/master/cpp02/ex01)**
+* ex02: **[Now we’re talking](https://github.com/leebo155/Cpp/tree/master/cpp02/ex02)**
+* ex03: **[BSP](https://github.com/leebo155/Cpp/tree/master/cpp02/ex03)**
 
 ## Makefile
 All Exercises follow a common Make rule.
