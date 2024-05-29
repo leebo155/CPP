@@ -3,7 +3,7 @@ BSP stands for Binary Space Partitioning.
 
 This exercise involves using the fixed-point class have written so far to create a function that can determine if a specific point is located inside a triangle.    
 
-Use the shoelace formula to solve the problem. Calculate the areas of four triangles, and if the area of the largest triangle is equal to the sum of the areas of the other three triangles, we determine that the point is inside the triangle.
+Use the shoelace formula to solve the problem. Calculate the areas of four triangles, and if the area of the largest triangle is equal to the sum of the areas of the other three triangles, determine that the point is inside the triangle.
 
 ## Rules
 Start by creating the class **Point** in Orthodox Canonical Form that represents a 2D point:
