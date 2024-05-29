@@ -18,7 +18,7 @@ This exercise involves implementing a Zombie class to learn about memory allocat
   ```
   It creates a zombie, name it, and the zombie announces itself.
 
-  ## Execution
+## Execution
     ```cpp 
     int	main(void)
     {
