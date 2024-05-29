@@ -1,5 +1,5 @@
 # Repetitive work
-This exercise involves writting a **FragTrap** class that inherits from the **ClapTrap** class.
+This exercise involves implementing a **FragTrap** class that inherits from the **ClapTrap** class.
 
 ## Rules
 Implement a FragTrap class that inherits from ClapTrap. It is very similar to ScavTrap. However, its construction and destruction messages must be different.
