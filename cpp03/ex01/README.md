@@ -1,5 +1,5 @@
 # Serena, my love!
-In this exercise, Create a **ScavTrap** class that inherits from **ClapTrap** class havee previously created. This process helps understand inheritance.
+In this exercise, implement a **ScavTrap** class that inherits from **ClapTrap** class havee previously created. This process helps understand inheritance.
 
 ## Rules
 ScavTrap use the attributes of ClapTrap (update ClapTrap in consequence) and must initialize them to:
