@@ -63,6 +63,8 @@ int main(void)
 }
 ```
 ```
+$> ./a.out
+...
 +ClapTrap Default constructor called.
 +ScavTrap Name parameter constructor called.
 +ClapTrap Default constructor called.
