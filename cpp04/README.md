@@ -2,7 +2,7 @@
 **Subtype polymorphism, abstract classes, interfaces**
 
 ## Introduction
-This project helps understand Subtype polymorphism, abstract classes and interfaces in CPP..
+This project helps understand Subtype polymorphism, abstract classes and interfaces in CPP.
 
 ## Contents
 * ex00: **[Polymorphism](https://github.com/leebo155/Cpp/tree/master/cpp04/ex00)**
