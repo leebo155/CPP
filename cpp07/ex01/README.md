@@ -1,5 +1,5 @@
 # Iter
-In this exercise, implement template functions that take arrays and functions as parameters and execute them.   
+In this exercise, implement function templates that take arrays and functions as parameters and execute them.   
 Through this process, gain a deeper understanding of templates.   
 
 ## Rules
